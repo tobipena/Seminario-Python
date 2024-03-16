@@ -12,11 +12,40 @@ max_failures = 10
 guessed_letters = []
 # Numero de fallos actual
 actual_failures = 0
+# Cadena de letras vocales
+vowels = 'aeiouáéíóú'
 
 print("¡Bienvenido al juego de adivinanzas!")
 print("Estoy pensando en una palabra. ¿Puedes adivinar cuál es?")
 
-word_displayed = "_" * len(secret_word)
+# Seleccion de dificultad y aplicando dificultad segun lo definido en el enunciado
+print('''Seleccione una de las siguientes dificultades:
+        1)Facil
+        2)Media
+        3)Dificil \n ''')
+while True:
+    difficult_level = int(input('ingrese el numero correspondiente a la dificultad que quiera: '))
+    word_displayed = ''
+    match difficult_level:
+        case 1:
+            for i in secret_word:
+                if i in vowels:
+                    word_displayed += i
+                    guessed_letters.append(i)
+                else:
+                    word_displayed += '_'
+            break
+        case 2:
+            guessed_letters.append(secret_word[0])
+            guessed_letters.append(secret_word[len(secret_word)-1])
+            word_displayed = guessed_letters[0] + ('_' * (len(secret_word)-2)) + guessed_letters[1]
+            break
+        case 3:
+            word_displayed = '_' * len(secret_word)
+            break
+        case _:
+            print('valor invalido, intentelo de nuevo')
+
 # Mostrarla palabra parcialmente adivinada
 print(f"Palabra: {word_displayed}")
 
