@@ -6,3 +6,7 @@ def inciso1(names,scored_goals,prevented_goals,assists):
                              'assists':assist
                              }
     return players_stats
+
+def inciso2(players_stats):
+    players_and_goals={key: value['Scored goals'] for key, value in players_stats.items()}
+    return players_and_goals
